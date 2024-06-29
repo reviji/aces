@@ -4,20 +4,133 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AT Cellphone Store</title>
-    <!-- Bootstrap CSS link -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <!-- Custom CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
-        /* Custom styles can be added here */
-        .product {
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #333;
+            color: #f2f2f2;
+            margin-top: 20px;
+        }
+        
+        .container {
+            padding: 20px;
+            background-color: #444;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+        }
+        
+        .highlight {
+            font-size: 2em;
+            font-weight: bold;
+            color: #333;
+            background-color: #ffcc00;
+            padding: 10px 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            display: inline-block;
+            text-transform: uppercase;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .product-card {
+            border: 1px solid #666;
+            padding: 20px;
+            border-radius: 12px;
+            background-color: #555;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+            transition: box-shadow 0.3s ease-in-out;
+        }
+        
+        .product-card:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+        
+        .price {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #f2f2f2;
+            margin-bottom: 10px;
+        }
+        
+        .form-control {
+            border-radius: 6px;
+            background-color: #666;
+            color: #f2f2f2;
+        }
+        
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+            height: auto;
+            padding: 10px 20px;
+        }
+        
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+        
+        .btn-danger {
+            background-color: #cc0000;
+            border-color: #cc0000;
+            transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+            height: auto;
+            padding: 10px 20px;
+        }
+        
+        .btn-danger:hover {
+            background-color: #a30000;
+            border-color: #a30000;
+        }
+        
+        .order-summary {
+            border: 1px solid #666;
+            padding: 20px;
+            border-radius: 12px;
+            background-color: #555;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        
+        .order-summary h4 {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #f2f2f2;
+        }
+        
+        .order-summary hr {
+            border-top: 1px solid #666;
             margin-bottom: 20px;
         }
-        .product img {
-            width: 100%; /* Adjust image width */
-            height: auto; /* Maintain aspect ratio */
+        
+        .order-summary .list-group-item {
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            background-color: #666;
+            color: #f2f2f2;
         }
-        .order-summary {
-            margin-top: 20px;
+        
+        .order-summary .total-section,
+        .order-summary .payment-section {
+            margin-bottom: 20px;
+        }
+        
+        .order-summary .form-control {
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            background-color: #666;
+            color: #f2f2f2;
+        }
+        
+        .order-summary button {
+            width: 100%;
+            font-size: 1.2em;
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -25,37 +138,235 @@
     <div class="container">
         <div class="row">
             <div class="col-12 text-center">
-                <h2>AT Cellphone Store</h2>
-                <hr class="hr">
+                <div class="highlight">AT Cellphone Store</div>
+                <hr>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-4 product">
-                <label for="product1">Samsung $21</label>
-                <img src="images/s21.png" alt="Samsung S21" class="img-thumbnail">
-                <br>
-                <label for="product1" id="price1">27000.00</label>
-                <input type="number" class="form-control" id="qty1" placeholder="Enter quantity">
+            <!-- Products -->
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="product-card">
+                    <h4>Samsung 21</h4>
+                    <img src="images/s21.png" class="product-img img-thumbnail">
+                    <p class="price">₱27,000.00</p>
+                    <input type="number" class="form-control qty" data-price="27000.00" placeholder="Enter quantity">
+                    <button class="btn btn-primary mt-2 add-to-cart">Add to Cart</button>
+                </div>
             </div>
-            <div class="col-md-4 product">
-                <label for="product2">Samsung 522</label>
-                <img src="images/s22.png" alt="Samsung S22" class="img-thumbnail">
-                <br>
-                <label for="product2" id="price2">37000.00</label>
-                <input type="number" class="form-control" id="qty2" placeholder="Enter quantity">
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="product-card">
+                    <h4>Samsung 522</h4>
+                    <img src="images/s22.png" class="product-img img-thumbnail">
+                    <p class="price">₱37,000.00</p>
+                    <input type="number" class="form-control qty" data-price="37000.00" placeholder="Enter quantity">
+                    <button class="btn btn-primary mt-2 add-to-cart">Add to Cart</button>
+                </div>
             </div>
-            <div class="col-md-4 order-summary">
-                <label for="carts">Orders</label><br>
-                <textarea class="form-control" rows="20" id="carts" readonly></textarea>
-                <input type="text" class="form-control border-0" id="total" readonly placeholder="Total">
-                <input type="number" class="form-control" id="cash" placeholder="Cash Tendered">
-                <input type="text" class="form-control border-0" id="change" readonly placeholder="Change">
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="product-card">
+                    <h4>iPhone 13</h4>
+                    <img src="images/iphone13.png" class="product-img img-thumbnail">
+                    <p class="price">₱45,000.00</p>
+                    <input type="number" class="form-control qty" data-price="45000.00" placeholder="Enter quantity">
+                    <button class="btn btn-primary mt-2 add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="product-card">
+                    <h4>iPhone 14</h4>
+                    <img src="images/iphone14.png" class="product-img img-thumbnail">
+                    <p class="price">₱55,000.00</p>
+                    <input type="number" class="form-control qty" data-price="55000.00" placeholder="Enter quantity">
+                    <button class="btn btn-primary mt-2 add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="product-card">
+                    <h4>Oppo Find X5</h4>
+                    <img src="images/oppo.png" class="product-img img-thumbnail">
+                    <p class="price">₱30,000.00</p>
+                    <input type="number" class="form-control qty" data-price="30000.00" placeholder="Enter quantity">
+                    <button class="btn btn-primary mt-2 add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="product-card">
+                    <h4>Xiaomi 13 Pro</h4>
+                    <img src="images/xiaomi.png" class="product-img img-thumbnail">
+                    <p class="price">₱40,000.00</p>
+                    <input type="number" class="form-control qty" data-price="40000.00" placeholder="Enter quantity">
+                    <button class="btn btn-primary mt-2 add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <!-- Order Summary -->
+            <div class="col-lg-4 col-md-12 col-sm-12">
+                <div class="order-summary">
+                    <h4>Order Summary</h4>
+                    <hr>
+                    <ul id="cart-list" class="list-group mb-3">
+                        <!-- Cart items will be added dynamically here -->
+                    </ul>
+                    <div class="total-section">
+                        <h5>Total</h5>
+                        <input type="text" class="form-control border-0" id="total" readonly>
+                    </div>
+                    <div class="payment-section">
+                        <input type="number" class="form-control" id="cash" placeholder="Cash Tendered">
+                        <input type="text" class="form-control border-0 mt-2" id="change" readonly>
+                    </div>
+                    <button class="btn btn-primary mt-2" id="print-btn">Print Receipt</button>
+                    <button class="btn btn-danger mt-2" id="clear-cart-btn">Clear Cart</button>
+                    <button class="btn btn-success mt-2" id="checkout-btn">Checkout</button>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Bootstrap JS and your custom JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="app.js"></script>
+    <script>
+        $(document).ready(function() {
+            let cart = []; // Array to store cart items
+
+            // Add to Cart button click handler
+            $('.add-to-cart').on('click', function() {
+                let productCard = $(this).closest('.product-card');
+                let productName = productCard.find('h4').text();
+                let price = parseFloat(productCard.find('.price').text().replace('₱', '').replace(',', ''));
+                let quantity = parseInt(productCard.find('.qty').val());
+
+                if (!isNaN(quantity) && quantity > 0) {
+                    // Check if item already exists in cart
+                    let existingItem = cart.find(item => item.name === productName);
+                    if (existingItem) {
+                        existingItem.quantity += quantity;
+                    } else {
+                        // Add new item to cart array
+                        let item = {
+                            name: productName,
+                            price: price,
+                            quantity: quantity
+                        };
+                        cart.push(item);
+                    }
+
+                    // Update cart list display and total
+                    displayCart();
+                    calculateTotal();
+                }
+            });
+
+            // Display cart items in the order summary
+            function displayCart() {
+                let cartList = $('#cart-list');
+                cartList.empty();
+
+                cart.forEach(function(item) {
+                    let itemHTML = `<li class="list-group-item d-flex justify-content-between lh-condensed">
+                        <div>
+                            <h6 class="my-0">${item.name}</h6>
+                            <small class="text-muted">Quantity: ${item.quantity}</small>
+                        </div>
+                        <span class="text-muted">₱${(item.price * item.quantity).toFixed(2)}</span>
+                        <button class="btn btn-sm btn-danger remove-item" data-name="${item.name}">Remove</button>
+                    </li>`;
+                    cartList.append(itemHTML);
+                });
+
+                // Attach remove item functionality to remove buttons
+                $('.remove-item').on('click', function() {
+                    let itemName = $(this).data('name');
+                    cart = cart.filter(item => item.name !== itemName);
+                    displayCart();
+                    calculateTotal();
+                });
+            }
+
+            // Calculate total price of items in the cart
+            function calculateTotal() {
+                let total = 0;
+                cart.forEach(function(item) {
+                    total += item.price * item.quantity;
+                });
+                $('#total').val('₱' + total.toFixed(2));
+                updateChange();
+            }
+
+            // Update change amount based on cash tendered
+            $('#cash').on('keyup', function() {
+                updateChange();
+            });
+
+            function updateChange() {
+                let total = parseFloat($('#total').val().replace('₱', ''));
+                let cash = parseFloat($('#cash').val());
+                if (!isNaN(total) && !isNaN(cash)) {
+                    let change = cash - total;
+                    $('#change').val('₱' + change.toFixed(2));
+                } else {
+                    $('#change').val('');
+                }
+            }
+
+            // Print receipt function
+            $('#print-btn').on('click', function() {
+                printReceipt();
+            });
+
+            function printReceipt() {
+                let receiptContent = `
+                    <h2>AT Cellphone Store</h2>
+                    <hr>
+                    <ul class="list-group mb-3">
+                        ${cart.map(item => `
+                            <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                <div>
+                                    <h6 class="my-0">${item.name}</h6>
+                                    <small class="text-muted">Quantity: ${item.quantity}</small>
+                                </div>
+                                <span class="text-muted">₱${(item.price * item.quantity).toFixed(2)}</span>
+                            </li>
+                        `).join('')}
+                    </ul>
+                    <hr>
+                    <h5>Total: ${$('#total').val()}</h5>
+                    <h5>Cash Tendered: ${$('#cash').val()}</h5>
+                    <h5>Change: ${$('#change').val()}</h5>
+                `;
+                let printWindow = window.open('', '', 'height=400,width=600');
+                printWindow.document.write('<html><head><title>Receipt</title>');
+                printWindow.document.write('</head><body>');
+                printWindow.document.write(receiptContent);
+                printWindow.document.write('</body></html>');
+                printWindow.document.close();
+                printWindow.focus();
+                printWindow.print();
+                printWindow.close();
+                alert("Receipt printed successfully!");
+            }
+
+            // Clear cart button functionality
+            $('#clear-cart-btn').on('click', function() {
+                cart = [];
+                displayCart();
+                calculateTotal();
+            });
+
+            // Checkout button functionality
+            $('#checkout-btn').on('click', function() {
+                if (cart.length === 0) {
+                    alert("Cart is empty. Please add items to proceed to checkout.");
+                } else {
+                    alert("Thank you for your purchase!");
+                    cart = [];
+                    displayCart();
+                    calculateTotal();
+                }
+            });
+        });
+    </script>
 </body>
 </html>
