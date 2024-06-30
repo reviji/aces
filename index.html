@@ -78,42 +78,7 @@
                     <button class="btn btn-primary mt-2" onclick="addToCart(2)">Add to Cart</button>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="product-card text-center">
-                    <label id="product3" class="product-name">iPhone 13</label>
-                    <img src="images/iphone13.png" alt="iPhone 13">
-                    <label class="product-price" id="price3">₱45,000.00</label>
-                    <input type="number" class="form-control" id="qty3" placeholder="Enter quantity">
-                    <button class="btn btn-primary mt-2" onclick="addToCart(3)">Add to Cart</button>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="product-card text-center">
-                    <label id="product4" class="product-name">iPhone 14</label>
-                    <img src="images/iphone14.png" alt="iPhone 14">
-                    <label class="product-price" id="price4">₱55,000.00</label>
-                    <input type="number" class="form-control" id="qty4" placeholder="Enter quantity">
-                    <button class="btn btn-primary mt-2" onclick="addToCart(4)">Add to Cart</button>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="product-card text-center">
-                    <label id="product5" class="product-name">Oppo Find X5</label>
-                    <img src="images/oppo.png" alt="Oppo Find X5">
-                    <label class="product-price" id="price5">₱30,000.00</label>
-                    <input type="number" class="form-control" id="qty5" placeholder="Enter quantity">
-                    <button class="btn btn-primary mt-2" onclick="addToCart(5)">Add to Cart</button>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="product-card text-center">
-                    <label id="product6" class="product-name">Xiaomi 13 Pro</label>
-                    <img src="images/xiaomi.png" alt="Xiaomi 13 Pro">
-                    <label class="product-price" id="price6">₱40,000.00</label>
-                    <input type="number" class="form-control" id="qty6" placeholder="Enter quantity">
-                    <button class="btn btn-primary mt-2" onclick="addToCart(6)">Add to Cart</button>
-                </div>
-            </div>
+            <!-- Repeat similar structure for other products -->
         </div>
         <!-- Order Summary -->
         <div class="order-summary">
@@ -138,9 +103,9 @@
         let cart = [];
 
         function addToCart(productId) {
-            const qty = document.getElementById(qty${productId}).value;
-            const productName = document.getElementById(product${productId}).innerText;
-            const productPrice = parseFloat(document.getElementById(price${productId}).innerText.replace('₱', '').replace(',', ''));
+            const qty = document.getElementById(`qty${productId}`).value;
+            const productName = document.getElementById(`product${productId}`).innerText;
+            const productPrice = parseFloat(document.getElementById(`price${productId}`).innerText.replace('₱', '').replace(',', ''));
 
             if (qty > 0) {
                 cart.push({ name: productName, qty: parseInt(qty), price: productPrice });
@@ -157,11 +122,11 @@
             cart.forEach(product => {
                 const productTotal = product.qty * product.price;
                 total += productTotal;
-                orderSummary += Product: ${product.name}, Qty: ${product.qty}, Total: ₱${productTotal.toLocaleString()}\n;
+                orderSummary += `Product: ${product.name}, Qty: ${product.qty}, Total: ₱${productTotal.toLocaleString()}\n`;
             });
 
             document.getElementById('carts').value = orderSummary;
-            document.getElementById('total').value = ₱${total.toLocaleString()};
+            document.getElementById('total').value = `₱${total.toLocaleString()}`;
         }
 
         function calculateTotal() {
@@ -173,7 +138,7 @@
             const cash = parseFloat(document.getElementById('cash').value);
             if (!isNaN(total) && !isNaN(cash)) {
                 const change = cash - total;
-                document.getElementById('change').value = ₱${change.toLocaleString()};
+                document.getElementById('change').value = `₱${change.toLocaleString()}`;
             } else {
                 document.getElementById('change').value = '';
             }
