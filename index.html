@@ -53,13 +53,16 @@
         .btn-group {
             margin-top: 20px;
         }
+        .btn-block {
+            width: 100%;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="text-center mb-4">
             <h2 class="text-primary">AT Cellphone Store</h2>
-            <hr class="hr">
+            <hr>
         </div>
         <div class="row">
             <!-- Product Cards -->
@@ -141,12 +144,17 @@
         let cart = [];
 
         function addToCart(productId) {
-            const qty = document.getElementById(qty${productId}).value;
+            const qty = parseInt(document.getElementById(qty${productId}).value);
             const productName = document.getElementsByClassName('product-name')[productId - 1].innerText;
             const productPrice = parseFloat(document.getElementsByClassName('product-price')[productId - 1].innerText.replace('₱', '').replace(',', ''));
 
             if (qty > 0) {
-                cart.push({ name: productName, qty: parseInt(qty), price: productPrice });
+                const existingProductIndex = cart.findIndex(item => item.name === productName);
+                if (existingProductIndex !== -1) {
+                    cart[existingProductIndex].qty += qty;
+                } else {
+                    cart.push({ name: productName, qty: qty, price: productPrice });
+                }
                 updateCartDisplay();
             } else {
                 alert("Please enter a valid quantity.");
@@ -157,7 +165,7 @@
             let orderSummary = '';
             let total = 0;
             const cartsElement = document.getElementById('carts');
-            cartsElement.innerHTML = ''; // Clear previous items
+            cartsElement.innerHTML = '';
 
             cart.forEach((product, index) => {
                 const productTotal = product.qty * product.price;
@@ -183,25 +191,28 @@
         function calculateChange() {
             const total = parseFloat(document.getElementById('total').value.replace('₱', '').replace(',', ''));
             const cash = parseFloat(document.getElementById('cash').value);
-            if (cash >= total) {
+            if (cash >=if (cash >= total) {
                 const change = cash - total;
                 document.getElementById('change').value = ₱${change.toLocaleString()};
             } else {
-                alert("Insufficient cash!");
-                document.getElementById('change').value = '';
+                alert("Insufficient cash.");
+                document.getElementById('change').value = "";
             }
         }
 
         function checkout() {
-            if (cart.length > 0) {
-                alert("Checkout successful!");
+            const total = parseFloat(document.getElementById('total').value.replace('₱', '').replace(',', ''));
+            const cash = parseFloat(document.getElementById('cash').value);
+            const change = parseFloat(document.getElementById('change').value.replace('₱', '').replace(',', ''));
+
+            if (cash >= total && change !== NaN) {
+                alert(Thank you for your purchase! Your change is ₱${change.toLocaleString()}.);
                 cart = [];
                 updateCartDisplay();
-                document.getElementById('total').value = '';
                 document.getElementById('cash').value = '';
                 document.getElementById('change').value = '';
             } else {
-                alert("Your cart is empty. Please add some items.");
+                alert("Please ensure the cash tendered is sufficient.");
             }
         }
     </script>
