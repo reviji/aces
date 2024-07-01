@@ -140,73 +140,79 @@
             </div>
         </div>
     </div>
-    <script>
-        let cart = [];
+<script>
+    let cart = [];
 
-        function addToCart(productId) {
-            const qty = parseInt(document.getElementById(qty${productId}).value);
-            const productName = document.getElementsByClassName('product-name')[productId - 1].innerText;
-            const productPrice = parseFloat(document.getElementsByClassName('product-price')[productId - 1].innerText.replace('₱', '').replace(',', ''));
+    function addToCart(productId) {
+        const qty = parseInt(document.getElementById('qty' + productId).value);
+        const productName = document.getElementsByClassName('product-name')[productId - 1].innerText;
+        const productPrice = parseFloat(document.getElementsByClassName('product-price')[productId - 1].innerText.replace('₱', '').replace(',', ''));
 
-            if (qty > 0) {
-                const existingProductIndex = cart.findIndex(item => item.name === productName);
-                if (existingProductIndex !== -1) {
-                    cart[existingProductIndex].qty += qty;
-                } else {
-                    cart.push({ name: productName, qty: qty, price: productPrice });
-                }
-                updateCartDisplay();
+        if (!isNaN(qty) && qty > 0) {
+            const existingProductIndex = cart.findIndex(item => item.name === productName);
+            if (existingProductIndex !== -1) {
+                cart[existingProductIndex].qty += qty;
             } else {
-                alert("Please enter a valid quantity.");
+                cart.push({ name: productName, qty: qty, price: productPrice });
             }
-        }
-
-        function updateCartDisplay() {
-            let orderSummary = '';
-            let total = 0;
-            const cartsElement = document.getElementById('carts');
-            cartsElement.innerHTML = '';
-
-            cart.forEach((product, index) => {
-                const productTotal = product.qty * product.price;
-                total += productTotal;
-                orderSummary += `
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        ${product.name} x ${product.qty} 
-                        <span>₱${productTotal.toLocaleString()}</span>
-                        <button class="btn btn-danger btn-sm" onclick="removeFromCart(${index})">Remove</button>
-                    </li>
-                `;
-            });
-
-            cartsElement.innerHTML = orderSummary;
-            document.getElementById('total').value = ₱${total.toLocaleString()};
-        }
-
-        function removeFromCart(index) {
-            cart.splice(index, 1);
             updateCartDisplay();
+        } else {
+            alert("Please enter a valid quantity.");
         }
+    }
 
-        function calculateChange() {
-            const total = parseFloat(document.getElementById('total').value.replace('₱', '').replace(',', ''));
-            const cash = parseFloat(document.getElementById('cash').value);
-            if (cash >=if (cash >= total) {
+    function updateCartDisplay() {
+        let orderSummary = '';
+        let total = 0;
+        const cartsElement = document.getElementById('carts');
+        cartsElement.innerHTML = '';
+
+        cart.forEach((product, index) => {
+            const productTotal = product.qty * product.price;
+            total += productTotal;
+            orderSummary += `
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    ${product.name} x ${product.qty} 
+                    <span>₱${productTotal.toLocaleString()}</span>
+                    <button class="btn btn-danger btn-sm" onclick="removeFromCart(${index})">Remove</button>
+                </li>
+            `;
+        });
+
+        cartsElement.innerHTML = orderSummary;
+        document.getElementById('total').value = `₱${total.toLocaleString()}`;
+    }
+
+    function removeFromCart(index) {
+        cart.splice(index, 1);
+        updateCartDisplay();
+    }
+
+    function calculateChange() {
+        const total = parseFloat(document.getElementById('total').value.replace('₱', '').replace(',', ''));
+        const cash = parseFloat(document.getElementById('cash').value);
+        
+        if (!isNaN(total) && !isNaN(cash)) {
+            if (cash >= total) {
                 const change = cash - total;
-                document.getElementById('change').value = ₱${change.toLocaleString()};
+                document.getElementById('change').value = `₱${change.toLocaleString()}`;
             } else {
                 alert("Insufficient cash.");
                 document.getElementById('change').value = "";
             }
+        } else {
+            alert("Please enter valid cash amount.");
         }
+    }
 
-        function checkout() {
-            const total = parseFloat(document.getElementById('total').value.replace('₱', '').replace(',', ''));
-            const cash = parseFloat(document.getElementById('cash').value);
-            const change = parseFloat(document.getElementById('change').value.replace('₱', '').replace(',', ''));
+    function checkout() {
+        const total = parseFloat(document.getElementById('total').value.replace('₱', '').replace(',', ''));
+        const cash = parseFloat(document.getElementById('cash').value);
+        const change = parseFloat(document.getElementById('change').value.replace('₱', '').replace(',', ''));
 
-            if (cash >= total && change !== NaN) {
-                alert(Thank you for your purchase! Your change is ₱${change.toLocaleString()}.);
+        if (!isNaN(total) && !isNaN(cash) && !isNaN(change)) {
+            if (cash >= total && change >= 0) {
+                alert(`Thank you for your purchase! Your change is ₱${change.toLocaleString()}.`);
                 cart = [];
                 updateCartDisplay();
                 document.getElementById('cash').value = '';
@@ -214,7 +220,11 @@
             } else {
                 alert("Please ensure the cash tendered is sufficient.");
             }
+        } else {
+            alert("Invalid calculation. Please try again.");
         }
-    </script>
+    }
+</script>
+
 </body>
 </html>
