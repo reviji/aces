@@ -7,15 +7,13 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
-            background-color: #f8f9fa;
+            background-color: #f0f0f0;
             font-family: 'Arial', sans-serif;
-        }
-        .container {
-            margin-top: 30px;
+            padding-top: 20px;
         }
         .product-card {
             margin-bottom: 20px;
-            padding: 15px;
+            padding: 20px;
             border: 1px solid #ddd;
             border-radius: 10px;
             background-color: #fff;
@@ -31,21 +29,26 @@
             border-radius: 10px;
         }
         .product-name {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: bold;
-            margin-top: 10px;
+            margin-top: 15px;
         }
         .product-price {
-            font-size: 16px;
+            font-size: 18px;
             color: #28a745;
-            margin-top: 5px;
+            margin-top: 10px;
         }
         .order-summary {
-            margin-top: 30px;
             padding: 20px;
             border: 1px solid #ddd;
             border-radius: 10px;
             background-color: #fff;
+            margin-top: 30px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .form-control {
+            margin-bottom: 10px;
         }
         .btn-group {
             margin-top: 20px;
@@ -62,28 +65,63 @@
             <!-- Product Cards -->
             <div class="col-md-4">
                 <div class="product-card text-center">
-                    <label id="product1" class="product-name">Samsung S21</label>
-                    <img src="images/s21.png" alt="Samsung S21">
-                    <label class="product-price" id="price1">₱27,000.00</label>
+                    <h4 class="product-name">Samsung S21</h4>
+                    <img src="images/s21.png" alt="Samsung S21" class="mb-3">
+                    <p class="product-price">₱27,000.00</p>
                     <input type="number" class="form-control" id="qty1" placeholder="Enter quantity">
-                    <button class="btn btn-primary mt-2" onclick="addToCart(1)">Add to Cart</button>
+                    <button class="btn btn-primary btn-block mt-3" onclick="addToCart(1)">Add to Cart</button>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="product-card text-center">
-                    <label id="product2" class="product-name">Samsung S22</label>
-                    <img src="images/s22.png" alt="Samsung S22">
-                    <label class="product-price" id="price2">₱37,000.00</label>
+                    <h4 class="product-name">Samsung S22</h4>
+                    <img src="images/s22.png" alt="Samsung S22" class="mb-3">
+                    <p class="product-price">₱37,000.00</p>
                     <input type="number" class="form-control" id="qty2" placeholder="Enter quantity">
-                    <button class="btn btn-primary mt-2" onclick="addToCart(2)">Add to Cart</button>
+                    <button class="btn btn-primary btn-block mt-3" onclick="addToCart(2)">Add to Cart</button>
                 </div>
             </div>
-            <!-- Repeat similar structure for other products -->
+            <div class="col-md-4">
+                <div class="product-card text-center">
+                    <h4 class="product-name">iPhone 12</h4>
+                    <img src="images/iphone12.png" alt="iPhone 12" class="mb-3">
+                    <p class="product-price">₱45,000.00</p>
+                    <input type="number" class="form-control" id="qty3" placeholder="Enter quantity">
+                    <button class="btn btn-primary btn-block mt-3" onclick="addToCart(3)">Add to Cart</button>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="product-card text-center">
+                    <h4 class="product-name">Google Pixel 5</h4>
+                    <img src="images/pixel5.png" alt="Google Pixel 5" class="mb-3">
+                    <p class="product-price">₱32,000.00</p>
+                    <input type="number" class="form-control" id="qty4" placeholder="Enter quantity">
+                    <button class="btn btn-primary btn-block mt-3" onclick="addToCart(4)">Add to Cart</button>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="product-card text-center">
+                    <h4 class="product-name">OnePlus 9</h4>
+                    <img src="images/oneplus9.png" alt="OnePlus 9" class="mb-3">
+                    <p class="product-price">₱40,000.00</p>
+                    <input type="number" class="form-control" id="qty5" placeholder="Enter quantity">
+                    <button class="btn btn-primary btn-block mt-3" onclick="addToCart(5)">Add to Cart</button>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="product-card text-center">
+                    <h4 class="product-name">Xiaomi Mi 11</h4>
+                    <img src="images/mi11.png" alt="Xiaomi Mi 11" class="mb-3">
+                    <p class="product-price">₱30,000.00</p>
+                    <input type="number" class="form-control" id="qty6" placeholder="Enter quantity">
+                    <button class="btn btn-primary btn-block mt-3" onclick="addToCart(6)">Add to Cart</button>
+                </div>
+            </div>
         </div>
         <!-- Order Summary -->
         <div class="order-summary">
-            <label for="carts">Orders</label>
-            <textarea class="form-control mb-3" rows="5" id="carts" readonly></textarea>
+            <h5 class="mb-4">Order Summary</h5>
+            <ul class="list-group mb-3" id="carts"></ul>
             <div class="form-group">
                 <input type="text" class="form-control" id="total" readonly placeholder="Total">
             </div>
@@ -94,8 +132,8 @@
                 <input type="text" class="form-control" id="change" readonly placeholder="Change">
             </div>
             <div class="btn-group">
-                <button class="btn btn-primary" onclick="calculateTotal()">Calculate Total</button>
-                <button class="btn btn-success" onclick="calculateChange()">Calculate Change</button>
+                <button class="btn btn-success btn-block mt-3" onclick="calculateChange()">Calculate Change</button>
+                <button class="btn btn-info btn-block mt-3" onclick="checkout()">Checkout</button>
             </div>
         </div>
     </div>
@@ -103,9 +141,9 @@
         let cart = [];
 
         function addToCart(productId) {
-            const qty = document.getElementById(`qty${productId}`).value;
-            const productName = document.getElementById(`product${productId}`).innerText;
-            const productPrice = parseFloat(document.getElementById(`price${productId}`).innerText.replace('₱', '').replace(',', ''));
+            const qty = document.getElementById(qty${productId}).value;
+            const productName = document.getElementsByClassName('product-name')[productId - 1].innerText;
+            const productPrice = parseFloat(document.getElementsByClassName('product-price')[productId - 1].innerText.replace('₱', '').replace(',', ''));
 
             if (qty > 0) {
                 cart.push({ name: productName, qty: parseInt(qty), price: productPrice });
@@ -118,29 +156,52 @@
         function updateCartDisplay() {
             let orderSummary = '';
             let total = 0;
+            const cartsElement = document.getElementById('carts');
+            cartsElement.innerHTML = ''; // Clear previous items
 
-            cart.forEach(product => {
+            cart.forEach((product, index) => {
                 const productTotal = product.qty * product.price;
                 total += productTotal;
-                orderSummary += `Product: ${product.name}, Qty: ${product.qty}, Total: ₱${productTotal.toLocaleString()}\n`;
+                orderSummary += `
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        ${product.name} x ${product.qty} 
+                        <span>₱${productTotal.toLocaleString()}</span>
+                        <button class="btn btn-danger btn-sm" onclick="removeFromCart(${index})">Remove</button>
+                    </li>
+                `;
             });
 
-            document.getElementById('carts').value = orderSummary;
-            document.getElementById('total').value = `₱${total.toLocaleString()}`;
+            cartsElement.innerHTML = orderSummary;
+            document.getElementById('total').value = ₱${total.toLocaleString()};
         }
 
-        function calculateTotal() {
+        function removeFromCart(index) {
+            cart.splice(index, 1);
             updateCartDisplay();
         }
 
         function calculateChange() {
             const total = parseFloat(document.getElementById('total').value.replace('₱', '').replace(',', ''));
             const cash = parseFloat(document.getElementById('cash').value);
-            if (!isNaN(total) && !isNaN(cash)) {
+            if (cash >= total) {
                 const change = cash - total;
-                document.getElementById('change').value = `₱${change.toLocaleString()}`;
+                document.getElementById('change').value = ₱${change.toLocaleString()};
             } else {
+                alert("Insufficient cash!");
                 document.getElementById('change').value = '';
+            }
+        }
+
+        function checkout() {
+            if (cart.length > 0) {
+                alert("Checkout successful!");
+                cart = [];
+                updateCartDisplay();
+                document.getElementById('total').value = '';
+                document.getElementById('cash').value = '';
+                document.getElementById('change').value = '';
+            } else {
+                alert("Your cart is empty. Please add some items.");
             }
         }
     </script>
