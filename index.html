@@ -1,25 +1,30 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <center> <h1><span class="badge rounded-pill text-bg-warning">Reviji Lapshop</span></h1></center>
-
+    <title>Reviji Lapshop</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
-            background-color: #f0f0f0;
+            background-color: #a19e88; /* Light gray background */
             font-family: 'Arial', sans-serif;
             padding-top: 20px;
+        }
+        .container {
+            background-color: #df7171; /* White background for main content */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Soft shadow effect */
+            margin-top: 30px;
         }
         .product-card {
             margin-bottom: 20px;
             padding: 20px;
             border: 1px solid #ddd;
             border-radius: 10px;
-            background-color: #f5f5f5;
-            transition: transform 0.2s;
+            background-color: #f5f5f5; /* Light gray background for product cards */
+            transition: transform 0.2s, box-shadow 0.2s;
         }
         .product-card:hover {
             transform: translateY(-5px);
@@ -37,17 +42,17 @@
         }
         .product-price {
             font-size: 18px;
-            color: #28a745;
+            color: #28a745; /* Green color for price */
             margin-top: 10px;
         }
         .order-summary {
+            background-color: #eeeeee; /* Light gray background for order summary */
             padding: 20px;
-            border: 1px solid #ddd;
             border-radius: 10px;
-            background-color: #eeeeee;
             margin-top: 30px;
             max-height: 400px;
             overflow-y: auto;
+            border: 1px solid #ddd;
         }
         .form-control {
             margin-bottom: 10px;
@@ -58,20 +63,30 @@
         .btn-block {
             width: 100%;
         }
+        .main-bg {
+            background-image: url('your-background-image.jpg'); /* Replace with your background image path */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            padding: 20px;
+            border-radius: 10px;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="text-center mb-4">
-            
-            <hr>
+    <div class="container main-bg">
+        <div class="row">
+            <div class="col-12 text-center mb-4">
+                <h1><span class="badge rounded-pill bg-warning text-dark">Reviji Lapshop</span></h1>
+            </div>
         </div>
         <div class="row">
             <!-- Product Cards -->
             <div class="col-md-4">
                 <div class="product-card text-center">
-                    <h4 class="product-name">Acer </h4>
-                    <img src="download_1_cbfe3162-1522-4560-b207-0138c17269f9.webp" alt="Samsung S21" class="mb-3">
+                    <h4 class="product-name">Acer Laptop</h4>
+                    <img src="download_1_cbfe3162-1522-4560-b207-0138c17269f9.webp" alt="Acer Laptop" class="mb-3">
                     <p class="product-price">₱28,000.00</p>
                     <input type="number" class="form-control" id="qty1" placeholder="Enter quantity">
                     <button class="btn btn-primary btn-block mt-3" onclick="addToCart(1)">Add to Cart</button>
@@ -79,8 +94,8 @@
             </div>
             <div class="col-md-4">
                 <div class="product-card text-center">
-                    <h4 class="product-name">HP Pavilion </h4>
-                    <img src="HP-Pavilion-13-3-FHD-Intel-Core-i3-8GB-RAM-128GB-SSD-Silver_906cf222-d138-430a-8146-d129b0cca3a2_2.f838f300a6e31f50074faf4091a1da7b.jpeg" alt="Samsung S22" class="mb-3">
+                    <h4 class="product-name">HP Pavilion Laptop</h4>
+                    <img src="HP-Pavilion-13-3-FHD-Intel-Core-i3-8GB-RAM-128GB-SSD-Silver_906cf222-d138-430a-8146-d129b0cca3a2_2.f838f300a6e31f50074faf4091a1da7b.jpeg" alt="HP Pavilion Laptop" class="mb-3">
                     <p class="product-price">₱37,000.00</p>
                     <input type="number" class="form-control" id="qty2" placeholder="Enter quantity">
                     <button class="btn btn-primary btn-block mt-3" onclick="addToCart(2)">Add to Cart</button>
@@ -88,9 +103,8 @@
             </div>
             <div class="col-md-4">
                 <div class="product-card text-center">
-                    <h4 class="product-name">Dell Latitude 3420</h4>
-                    <img src="Dell-Latitude-3420-11th-Generation-14-1.jpg
-" alt="iPhone 12" class="mb-3">
+                    <h4 class="product-name">Dell Latitude 3420 Laptop</h4>
+                    <img src="Dell-Latitude-3420-11th-Generation-14-1.jpg" alt="Dell Latitude 3420" class="mb-3">
                     <p class="product-price">₱45,000.00</p>
                     <input type="number" class="form-control" id="qty3" placeholder="Enter quantity">
                     <button class="btn btn-primary btn-block mt-3" onclick="addToCart(3)">Add to Cart</button>
@@ -98,7 +112,7 @@
             </div>
             <div class="col-md-4">
                 <div class="product-card text-center">
-                    <h4 class="product-name">IdeaPad Slim 3i </h4>
+                    <h4 class="product-name">IdeaPad Slim 3i Laptop</h4>
                     <img src="d3kftnq1r3gnfjw6o8eitcef8e0g01407329.webp" alt="IdeaPad Slim 3i" class="mb-3">
                     <p class="product-price">₱32,000.00</p>
                     <input type="number" class="form-control" id="qty4" placeholder="Enter quantity">
@@ -116,7 +130,7 @@
             </div>
             <div class="col-md-4">
                 <div class="product-card text-center">
-                    <h4 class="product-name">ASUS L510MA</h4>
+                    <h4 class="product-name">ASUS L510MA Laptop</h4>
                     <img src="download.png" alt="ASUS L510MA" class="mb-3">
                     <p class="product-price">₱30,000.00</p>
                     <input type="number" class="form-control" id="qty6" placeholder="Enter quantity">
@@ -125,109 +139,113 @@
             </div>
         </div>
         <!-- Order Summary -->
-        <div class="order-summary">
-            <h5 class="mb-4">Order Summary</h5>
-            <ul class="list-group mb-3" id="carts"></ul>
-            <div class="form-group">
-                <input type="text" class="form-control" id="total" readonly placeholder="Total">
-            </div>
-            <div class="form-group">
-                <input type="number" class="form-control" id="cash" placeholder="Cash Tendered">
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control" id="change" readonly placeholder="Change">
-            </div>
-            <div class="btn-group">
-                <button class="btn btn-success btn-block mt-3" onclick="calculateChange()">Calculate Change</button>
-                <button class="btn btn-info btn-block mt-3" onclick="checkout()">Checkout</button>
+        <div class="row">
+            <div class="col-12">
+                <div class="order-summary">
+                    <h5 class="mb-4">Order Summary</h5>
+                    <ul class="list-group mb-3" id="carts"></ul>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="total" readonly placeholder="Total">
+                    </div>
+                    <div class="form-group">
+                        <input type="number" class="form-control" id="cash" placeholder="Cash Tendered">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="change" readonly placeholder="Change">
+                    </div>
+                    <div class="btn-group">
+                        <button class="btn btn-success btn-block mt-3" onclick="calculateChange()">Calculate Change</button>
+                        <button class="btn btn-info btn-block mt-3" onclick="checkout()">Checkout</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-<script>
-    let cart = [];
 
-    function addToCart(productId) {
-        const qty = parseInt(document.getElementById('qty' + productId).value);
-        const productName = document.getElementsByClassName('product-name')[productId - 1].innerText;
-        const productPrice = parseFloat(document.getElementsByClassName('product-price')[productId - 1].innerText.replace('₱', '').replace(',', ''));
+    <script>
+        let cart = [];
 
-        if (!isNaN(qty) && qty > 0) {
-            const existingProductIndex = cart.findIndex(item => item.name === productName);
-            if (existingProductIndex !== -1) {
-                cart[existingProductIndex].qty += qty;
-            } else {
-                cart.push({ name: productName, qty: qty, price: productPrice });
-            }
-            updateCartDisplay();
-        } else {
-            alert("Please enter a valid quantity.");
-        }
-    }
+        function addToCart(productId) {
+            const qty = parseInt(document.getElementById('qty' + productId).value);
+            const productName = document.getElementsByClassName('product-name')[productId - 1].innerText;
+            const productPrice = parseFloat(document.getElementsByClassName('product-price')[productId - 1].innerText.replace('₱', '').replace(',', ''));
 
-    function updateCartDisplay() {
-        let orderSummary = '';
-        let total = 0;
-        const cartsElement = document.getElementById('carts');
-        cartsElement.innerHTML = '';
-
-        cart.forEach((product, index) => {
-            const productTotal = product.qty * product.price;
-            total += productTotal;
-            orderSummary += `
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    ${product.name} x ${product.qty} 
-                    <span>₱${productTotal.toLocaleString()}</span>
-                    <button class="btn btn-danger btn-sm" onclick="removeFromCart(${index})">Remove</button>
-                </li>
-            `;
-        });
-
-        cartsElement.innerHTML = orderSummary;
-        document.getElementById('total').value = `₱${total.toLocaleString()}`;
-    }
-
-    function removeFromCart(index) {
-        cart.splice(index, 1);
-        updateCartDisplay();
-    }
-
-    function calculateChange() {
-        const total = parseFloat(document.getElementById('total').value.replace('₱', '').replace(',', ''));
-        const cash = parseFloat(document.getElementById('cash').value);
-        
-        if (!isNaN(total) && !isNaN(cash)) {
-            if (cash >= total) {
-                const change = cash - total;
-                document.getElementById('change').value = `₱${change.toLocaleString()}`;
-            } else {
-                alert("Insufficient cash.");
-                document.getElementById('change').value = "";
-            }
-        } else {
-            alert("Please enter valid cash amount.");
-        }
-    }
-
-    function checkout() {
-        const total = parseFloat(document.getElementById('total').value.replace('₱', '').replace(',', ''));
-        const cash = parseFloat(document.getElementById('cash').value);
-        const change = parseFloat(document.getElementById('change').value.replace('₱', '').replace(',', ''));
-
-        if (!isNaN(total) && !isNaN(cash) && !isNaN(change)) {
-            if (cash >= total && change >= 0) {
-                alert(`Thank you for your purchase! Your change is ₱${change.toLocaleString()}.`);
-                cart = [];
+            if (!isNaN(qty) && qty > 0) {
+                const existingProductIndex = cart.findIndex(item => item.name === productName);
+                if (existingProductIndex !== -1) {
+                    cart[existingProductIndex].qty += qty;
+                } else {
+                    cart.push({ name: productName, qty: qty, price: productPrice });
+                }
                 updateCartDisplay();
-                document.getElementById('cash').value = '';
-                document.getElementById('change').value = '';
             } else {
-                alert("Please ensure the cash tendered is sufficient.");
+                alert("Please enter a valid quantity.");
             }
-        } else {
-            alert("Invalid calculation. Please try again.");
         }
-    }
-</script>
 
+        function updateCartDisplay() {
+            let orderSummary = '';
+            let total = 0;
+            const cartsElement = document.getElementById('carts');
+            cartsElement.innerHTML = '';
+
+            cart.forEach((product, index) => {
+                const productTotal = product.qty * product.price;
+                total += productTotal;
+                orderSummary += `
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        ${product.name} x ${product.qty} 
+                        <span>₱${productTotal.toLocaleString()}</span>
+                        <button class="btn btn-danger btn-sm" onclick="removeFromCart(${index})">Remove</button>
+                    </li>
+                `;
+            });
+
+            cartsElement.innerHTML = orderSummary;
+            document.getElementById('total').value = `₱${total.toLocaleString()}`;
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartDisplay();
+        }
+
+        function calculateChange() {
+            const total = parseFloat(document.getElementById('total').value.replace('₱', '').replace(',', ''));
+            const cash = parseFloat(document.getElementById('cash').value);
+            
+            if (!isNaN(total) && !isNaN(cash)) {
+                if (cash >= total) {
+                    const change = cash - total;
+                    document.getElementById('change').value = `₱${change.toLocaleString()}`;
+                } else {
+                    alert("Insufficient cash.");
+                    document.getElementById('change').value = "";
+                }
+            } else {
+                alert("Please enter valid cash amount.");
+            }
+        }
+
+        function checkout() {
+            const total = parseFloat(document.getElementById('total').value.replace('₱', '').replace(',', ''));
+            const cash = parseFloat(document.getElementById('cash').value);
+            const change = parseFloat(document.getElementById('change').value.replace('₱', '').replace(',', ''));
+
+            if (!isNaN(total) && !isNaN(cash) && !isNaN(change)) {
+                if (cash >= total && change >= 0) {
+                    alert(`Thank you for your purchase! Your change is ₱${change.toLocaleString()}.`);
+                    cart = [];
+                    updateCartDisplay();
+                    document.getElementById('cash').value = '';
+                    document.getElementById('change').value = '';
+                } else {
+                    alert("Please ensure the cash tendered is sufficient.");
+                }
+            } else {
+                alert("Invalid calculation. Please try again.");
+            }
+        }
+    </script>
 </body>
 </html>
